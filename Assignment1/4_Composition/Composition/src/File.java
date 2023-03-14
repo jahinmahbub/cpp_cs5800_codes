@@ -16,6 +16,8 @@ public class File {
         return parentFolder;
     }
 
-    public void print(String string) {
+    public void print() {
+        System.out.println("            |--"+getName()+ "    ");
+        //return getName();
     }
 }

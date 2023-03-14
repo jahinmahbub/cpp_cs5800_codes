@@ -46,7 +46,7 @@ public class Folder {
             subfolder.print(prefix + "    ");
         }
         for (File file : files) {
-            file.print(prefix + "    ");
+            file.print();
         }
     }
 }

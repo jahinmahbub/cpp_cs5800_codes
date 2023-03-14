@@ -1,45 +1,39 @@
 public class Driver {
     public static void main(String[] args) {
-        // Create root folder
-        Folder root = new Folder("root");
+        // Create the root folder
+        Folder root = new Folder(".php demo 1");
 
-        // Create folders and files
-        Folder php_demo1 = new Folder(".php demo 1");
+        // Create subfolders
         Folder sourceFiles = new Folder("Source Files");
+        Folder includePath = new Folder("Incude Path");
+        Folder remoteFiles = new Folder("Remote Files");
+
+        // Add subfolders to the root folder
+        root.addSubfolder(sourceFiles);
+        root.addSubfolder(includePath);
+        root.addSubfolder(remoteFiles);
+
+        // Create subfolders for the Source Files folder
         Folder phalcon = new Folder("phalcon");
         Folder app = new Folder("app");
+        Folder cache = new Folder("cache");
+        Folder publicFolder = new Folder("public");
+
+        // Add subfolders to the Source Files folder
+        sourceFiles.addSubfolder(phalcon);
+        sourceFiles.addSubfolder(app);
+        sourceFiles.addSubfolder(cache);
+        sourceFiles.addSubfolder(publicFolder);
+
+        // Create subfolders for the app folder
         Folder config = new Folder("config");
         Folder controllers = new Folder("controllers");
         Folder library = new Folder("library");
         Folder migrations = new Folder("migrations");
         Folder models = new Folder("models");
         Folder views = new Folder("views");
-        Folder cache = new Folder("cache");
-        Folder publicFolder = new Folder("public");
-        File htaccess = new File("htaccess", php_demo1);
-        File htrouter = new File("htrouter.php", php_demo1);
-        File index = new File("index.html", php_demo1);
-        Folder includePath = new Folder("Include Path");
-        Folder remoteFiles = new Folder("Remote Files");
 
-        // Add folders and files to root folder
-        root.addSubfolder(php_demo1);
-        root.addSubfolder(includePath);
-        root.addSubfolder(remoteFiles);
-
-        // Add folders and files to php_demo1 folder
-        php_demo1.addSubfolder(sourceFiles);
-        php_demo1.addFile(htaccess);
-        php_demo1.addFile(htrouter);
-        php_demo1.addFile(index);
-
-        // Add folders and files to sourceFiles folder
-        sourceFiles.addSubfolder(phalcon);
-        sourceFiles.addSubfolder(app);
-        sourceFiles.addSubfolder(cache);
-        sourceFiles.addSubfolder(publicFolder);
-
-        // Add folders and files to app folder
+        // Add subfolders to the app folder
         app.addSubfolder(config);
         app.addSubfolder(controllers);
         app.addSubfolder(library);
@@ -47,15 +41,26 @@ public class Driver {
         app.addSubfolder(models);
         app.addSubfolder(views);
 
-        // Print out file system
+        // Create files for the public folder
+        File htaccess = new File(".htaccess", publicFolder);
+        File htrouter = new File("htrouter.php", publicFolder);
+        File index = new File("index.html", publicFolder);
+
+        // Print out the file system
         root.print("");
-        
-        // Delete app folder and print out file system
-        php_demo1.removeSubfolder(app);
+
+        // Delete the app folder
+        sourceFiles.removeSubfolder(app);
+
+        // Print out the file system again
+        System.out.println();
         root.print("");
-        
-        // Delete public folder and print out file system
+
+        // Delete the public folder
         sourceFiles.removeSubfolder(publicFolder);
+
+        // Print out the file system again
+        System.out.println();
         root.print("");
     }
 }

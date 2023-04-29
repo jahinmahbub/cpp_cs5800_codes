@@ -1,8 +1,5 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ChatServer {
     private Map<User, ChatHistory> chatHistories;
@@ -23,7 +20,7 @@ public class ChatServer {
         blockedUsers.remove(user);
     }
 
-    public void sendMessage(String sender, List<User> recipients, String messageContent) {
+    public void sendMessage(User sender, List<User> recipients, String messageContent) {
         Message message = new Message(sender, recipients, messageContent);
         for (User recipient : recipients) {
             if (!isBlocked(sender, recipient)) {
@@ -65,7 +62,7 @@ public class ChatServer {
         }
     }
 
-    private boolean isBlocked(String sender, User recipient) {
+    private boolean isBlocked(User sender, User recipient) {
         List<User> blockedList = blockedUsers.get(recipient);
         return blockedList.contains(sender);
     }

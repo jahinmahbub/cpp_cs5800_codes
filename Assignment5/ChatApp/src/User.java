@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class User {
+public class User implements IterableByUser{
     private String name;
     private ChatServer server;
     private ChatHistory chatHistory;
@@ -15,7 +14,8 @@ public class User {
     public String send(User user, String content) {
         List<User> recipients = new ArrayList<User>();
         recipients.add(user);
-        Message message = new Message(name, recipients, content);
+        User sender = this;
+        Message message = new Message(sender, recipients, content);
         chatHistory.addMessage(message);
         server.sendMessage(message.getSender(),message.getRecipients(),message.getContent());
         return content;
@@ -60,5 +60,23 @@ public class User {
 
     public void getChatHistory() {
         chatHistory.getChatHistory();
-    }    
+    }
+
+    private List<Message> messages2;
+    public User(String name) {
+        this.name = name;
+        this.messages2 = new ArrayList<>();
+    }
+
+    public void addMessage(Message message) {
+        this.messages2.add(message);
+    }
+
+    public List<Message> getMessages() {
+        return this.messages2;
+    }
+    @Override
+    public Iterator iterator(User userToSearchWith) {
+        return new SearchMessagesByUser(this.getMessages(), userToSearchWith);
+    }
 }

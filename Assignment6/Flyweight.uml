@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Jahin Catalan Mahbub/My Drive (mzahin.zm@gmail.com)/CPP Canvas/CS 5800/Codes/Assignment6/2__Flyweight/Flyweight/src</OriginalElement>
+  <nodes>
+    <node x="78.0371621621621" y="-15.0">CharacterProperties</node>
+    <node x="-246.11328265243935" y="699.2400370713624">Driver</node>
+    <node x="-286.53469386903123" y="415.3558850787766">Document</node>
+    <node x="578.3004596347967" y="183.1835032437442">Character</node>
+    <node x="-493.2261353104726" y="34.932808155699746">FlyweightFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Driver" target="FlyweightFactory" relationship="CREATE">
+      <point x="-76.0" y="0.0" />
+      <point x="-330.7261353104726" y="737.7400370713624" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="Document" target="FlyweightFactory" relationship="TO_ONE">
+      <point x="-45.691441441441384" y="-83.5" />
+      <point x="155.0" y="38.5" />
+    </edge>
+    <edge source="Driver" target="CharacterProperties" relationship="DEPENDENCY">
+      <point x="-2.2522522510826093E-4" y="-38.5" />
+      <point x="-170.11350787766446" y="609.0" />
+      <point x="448.191" y="609.0" />
+      <point x="448.191" y="493.5" />
+      <point x="516.5" y="493.5" />
+      <point x="516.5" y="79.0" />
+      <point x="126.99983783783787" y="0.0" />
+    </edge>
+    <edge source="Document" target="CharacterProperties" relationship="DEPENDENCY">
+      <point x="-4.414414414100065E-4" y="83.5" />
+      <point x="-130.03513531047264" y="609.0" />
+      <point x="448.191" y="609.0" />
+      <point x="448.191" y="493.5" />
+      <point x="516.5" y="493.5" />
+      <point x="516.5" y="79.0" />
+      <point x="126.99983783783787" y="0.0" />
+    </edge>
+    <edge source="Driver" target="Character" relationship="DEPENDENCY">
+      <point x="76.0" y="0.0" />
+      <point x="785.4914596347967" y="737.7400370713624" />
+      <point x="85.69100000000003" y="61.0" />
+    </edge>
+    <edge source="Document" target="Document" relationship="CREATE">
+      <point x="-105.69144144144138" y="83.5" />
+      <point x="-235.7261353104726" y="613.3558850787766" />
+      <point x="-235.7261353104726" y="613.3558850787766" />
+      <point x="-105.69144144144138" y="83.5" />
+    </edge>
+    <edge source="FlyweightFactory" target="CharacterProperties" relationship="CREATE">
+      <point x="146.537" y="-38.5" />
+      <point x="-184.1891353104726" y="210.25" />
+      <point x="220.037" y="210.25" />
+      <point x="14.999837837837902" y="94.0" />
+    </edge>
+    <edge source="Document" target="Character" relationship="TO_MANY">
+      <point x="103.30855855855856" y="-83.5" />
+      <point x="-26.72613531047267" y="381.1779425393883" />
+      <point x="699.8004596347967" y="381.1779425393883" />
+      <point x="0.0" y="61.0" />
+    </edge>
+    <edge source="Character" target="CharacterProperties" relationship="TO_ONE">
+      <point x="-121.49999999999994" y="56.0" />
+      <point x="-106.5" y="300.1835032437442" />
+      <point x="-106.5" y="222.0" />
+      <point x="205.037" y="222.0" />
+      <point x="-1.621621620984115E-4" y="94.0" />
+    </edge>
+    <edge source="Document" target="Character" relationship="CREATE">
+      <point x="118.30855855855856" y="-83.5" />
+      <point x="-11.72613531047267" y="381.1779425393883" />
+      <point x="714.8004596347967" y="381.1779425393883" />
+      <point x="15.0" y="61.0" />
+    </edge>
+    <edge source="FlyweightFactory" target="CharacterProperties" relationship="TO_MANY">
+      <point x="0.0" y="-38.5" />
+      <point x="-330.7261353104726" y="222.0" />
+      <point x="205.037" y="222.0" />
+      <point x="-1.621621620984115E-4" y="94.0" />
+    </edge>
+    <edge source="Driver" target="Document" relationship="CREATE">
+      <point x="-22.97522522522513" y="-38.5" />
+      <point x="-193.08850787766448" y="609.0" />
+      <point x="-235.7261353104726" y="609.0" />
+      <point x="-105.69144144144138" y="83.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.147872340425532" showDependencies="true" x="226.0000000000001" y="371.48470806302134" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -1,0 +1,93 @@
+@startuml DigitalAssistantApp
+
+!define LightCoral
+
+class PhoneDialer {
+    + ring(callRecipient : String)
+    + redirectCall() : void
+}
+
+class EmailService {
+    + sendEmail(recipient : String) : void
+}
+
+class Calendar {
+    + setReminder(date: date, eventName : String) : void
+}
+
+class MusicPlayer {
+    + play() : void
+    + pause() : void
+}
+
+class DigitalAssistantApplication {
+    - phoneDialer : PhoneDialer
+    - emailService : EmailService
+    - calendar : Calendar
+    - musicPlayer : MusicPlayer
+    + completeUserRequest(userRequest : UserRequest) : void
+}
+
+abstract class UserRequest {
+    - command : Command
+    + executeCommand(command : Command) : void 
+    + validateInput() : boolean
+    + notifyUser() : void
+    + logRequest() : void
+}
+
+note right : Template Design Pattern
+
+class CallUserRequest extends UserRequest {
+    + validateInput() : void
+    + notifyUser() : void
+}
+
+class EmailUserRequest extends UserRequest {
+    + validateInput() : void
+    + notifyUser() : void
+}
+
+class ReminderUserRequest extends UserRequest {
+    + validateInput() : void
+    + notifyUser() : void
+}
+
+class MusicUserRequest extends UserRequest {
+    + validateInput() : void
+    + notifyUser() : void
+}
+
+interface Command {
+    + execute(): void
+}
+
+note right : Command Design Pattern
+
+class CallCommand implements Command {
+    - phoneDialer : PhoneDialer
+    + execute(): void
+}
+
+class EmailCommand implements Command {
+    - emailService : EmailService
+    + execute() : void
+}
+
+class ReminderCommand implements Command {
+    - calendar : Calendar
+    + execute() : void
+}
+
+class MusicCommand implements Command {
+    - musicPlayer : MusicPlayer
+    + execute() : void
+}
+
+DigitalAssistantApplication o-- PhoneDialer
+DigitalAssistantApplication o-- EmailService
+DigitalAssistantApplication o-- MusicPlayer
+DigitalAssistantApplication o-- Calendar
+DigitalAssistantApplication --> UserRequest
+UserRequest o-- Command
+@enduml

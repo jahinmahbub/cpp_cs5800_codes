@@ -1,0 +1,73 @@
+@startuml Weather
+
+!define LightCoral
+
+
+interface WeatherService {
+    + getWeather(): WeatherData
+}
+
+class WeatherAPIService implements WeatherService {
+    + getWeather(): WeatherData
+}
+
+note bottom : Factory Desgin Pattern
+
+class WeatherGovService implements WeatherService {
+    + getWeather(): WeatherData
+}
+
+class OpenMeteoService implements WeatherService {
+    + getWeather(): WeatherData
+}
+
+class WeatherData {
+    + getTemperature(): double
+    + setTemperature(temperature: double): void
+    + getHumidity(): double
+    + setHumidity(humidity: double): void
+    + getPressure(): double
+    + setPressure(pressure: double): void
+    + getWindSpeed(): double
+    + setWindSpeed(windSpeed: double): void
+}
+
+interface WeatherObserver {
+    + notify(weatherData: WeatherData): void
+}
+
+class WeatherSubject {
+    - observers: List<WeatherObserver>
+    + registerObserver(observer: WeatherObserver): void
+    + removeObserver(observer: WeatherObserver): void
+    + notifyObservers(weatherData: WeatherData): void
+}
+
+note right : Observer Desgin Pattern
+
+class WeatherForecastSystem {
+    - services: List<WeatherService>
+    - weatherData: WeatherData
+    - weatherSubject: WeatherSubject
+    + addService(service: WeatherService): void
+    + removeService(service: WeatherService): void
+    + updateWeatherData(): void
+}
+
+note left : Strategy Desgin Pattern
+
+class WeatherSubscriber implements WeatherObserver {
+    + notify(weatherData: WeatherData): void
+}
+
+WeatherAPIService --> WeatherService
+WeatherGovService --> WeatherService
+OpenMeteoService --> WeatherService
+WeatherForecastSystem --> WeatherService
+WeatherForecastSystem --> WeatherSubject
+WeatherForecastSystem --> WeatherData
+WeatherSubject --> WeatherObserver
+WeatherSubject --> WeatherData
+WeatherSubscriber --> WeatherObserver
+
+@enduml

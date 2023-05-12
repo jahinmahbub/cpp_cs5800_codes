@@ -1,0 +1,85 @@
+@startuml TwitterUser
+!define DARKGREEN
+!include https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+
+class TwitterUser {
++ postTweet()
++ likeTweet()
++ retweet()
++ follow()
++ unfollow()
++ notifyFollowers()
+}
+
+interface TweetState { 
++ publish()
++ delete()
+}
+note top : State Design Pattern
+
+class TweetSubject {
+- observers: List<TweetObserver>
++ registerObserver()  
++ removeObserver() 
++ notifyObservers() 
+}
+note bottom : Command Design Pattern\n Strategy Design Pattern
+
+class DraftState {
++ publish()
++ delete()
+}
+
+class PublishedState {
++ publish()
++ delete()
+}
+
+class DeletedState {
++ publish()
++ delete()
+}
+
+class Tweet {
+- state: TweetState
++ getContent()
++ setContent()
++ addHashtag()
++ removeHashtag()
++ addMention()
++ removeMention()
+}
+
+interface TweetObserver { 
++ notify()
+}
+
+note bottom : Observer Design Pattern
+
+
+
+class TweetSearch {
++ searchByHashtag()
++ searchByMention()
+}
+
+class TweetValidator {
++ validate() 
+}
+
+note right : Template Design Pattern
+
+TwitterUser -> Tweet: creates
+TwitterUser --> TweetObserver: observes
+TweetSubject -> TweetObserver: removes
+TweetSubject --> TweetObserver: notifies
+TwitterUser --> TweetSearch: searches
+TwitterUser -> TweetValidator: validates
+TweetSubject -> TweetObserver: registers
+
+Tweet --> TweetState
+TweetState <|-- DraftState
+TweetState <|-- PublishedState
+TweetState <|-- DeletedState
+
+@enduml

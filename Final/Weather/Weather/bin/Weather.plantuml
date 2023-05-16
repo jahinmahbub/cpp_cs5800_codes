@@ -11,7 +11,7 @@ class WeatherAPIService implements WeatherService {
     + getWeather(): WeatherData
 }
 
-note bottom : Factory Desgin Pattern
+note bottom : Factory Design Pattern
 
 class WeatherGovService implements WeatherService {
     + getWeather(): WeatherData
@@ -43,31 +43,28 @@ class WeatherSubject {
     + notifyObservers(weatherData: WeatherData): void
 }
 
-note right : Observer Desgin Pattern
+note right : Observer Design Pattern
 
 class WeatherForecastSystem {
-    - services: List<WeatherService>
+    - weatherService : weatherService
     - weatherData: WeatherData
     - weatherSubject: WeatherSubject
-    + addService(service: WeatherService): void
-    + removeService(service: WeatherService): void
+    + setWeatherService(service : WeatherService) : void
     + updateWeatherData(): void
 }
 
-note left : Strategy Desgin Pattern
+note left : Strategy Design Pattern
 
 class WeatherSubscriber implements WeatherObserver {
     + notify(weatherData: WeatherData): void
 }
 
-WeatherAPIService --> WeatherService
-WeatherGovService --> WeatherService
-OpenMeteoService --> WeatherService
-WeatherForecastSystem --> WeatherService
-WeatherForecastSystem --> WeatherSubject
-WeatherForecastSystem --> WeatherData
-WeatherSubject --> WeatherObserver
-WeatherSubject --> WeatherData
-WeatherSubscriber --> WeatherObserver
+WeatherForecastSystem o-- WeatherService
+WeatherForecastSystem *-- WeatherSubject
+WeatherSubject *-- WeatherObserver
+WeatherAPIService --> WeatherData
+WeatherGovService --> WeatherData
+OpenMeteoService --> WeatherData
+
 
 @enduml
